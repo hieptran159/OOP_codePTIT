@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- >0){
+            String s1 = sc.next();
+            char  c1=sc.next().charAt(0);
+            String s2 = sc.next();
+            BigInteger a = new BigInteger(s1);
+            BigInteger b = new BigInteger(s2);
+            if(c1 == '+') System.out.println(a.add(b));
+            else if (c1=='-') System.out.println(a.subtract(b));
+            else  if (c1=='*') System.out.println(a.multiply(b));
+
+        }
+
+        sc.close();
+    }
+}
