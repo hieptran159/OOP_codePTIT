@@ -1,0 +1,56 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- > 0){
+            int n =sc.nextInt();
+            int scs = countDigits(n);
+            int[] a = new int[scs];
+            int c=0;
+            while (n != 0) {
+                a[c++] = n%10;
+                n /= 10;
+            }
+            for(int i = 0; i < scs/2; ++i) swap(a,i, scs-i-1);
+            
+            if (a.length % 2 == 0){
+                for(int i = 0; i < scs; i+=2) swap(a, i, i+1);
+            }
+            else {
+                for(int i = 1; i < scs; i+=2) swap(a, i, i+1);
+                
+            }
+            int j = 0;
+            for(int i = 0; i < scs; ++i){
+                if(a[i] != 0) {j = i;break;}
+            }
+            for(int i = j; i < scs; ++i) System.out.print(a[i]);
+            System.out.println();
+        }
+        
+        sc.close();
+    }
+    public static int countDigits(int num) {
+        if (num == 0) {
+            return 1;
+        }
+        
+        int count = 0;
+        while (num != 0) {
+            num /= 10;
+            count++;
+        }
+        return count;
+    }
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    
+}
