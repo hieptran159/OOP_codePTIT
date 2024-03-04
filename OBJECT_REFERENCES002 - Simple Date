@@ -1,0 +1,37 @@
+class SimpleDate {
+    private int day;
+    private int month;
+    private int year;
+
+    // Constructor
+    public SimpleDate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+    // Phương thức equals() để so sánh 2 object SimpleDate
+    @Override
+    public boolean equals(Object obj) {
+        // Kiểm tra xem obj có phải là một object của class SimpleDate hay không
+        if (obj instanceof SimpleDate) {
+            // Ép kiểu obj về SimpleDate
+            SimpleDate otherDate = (SimpleDate) obj;
+            // So sánh day, month và year của 2 object
+            return this.day == otherDate.day &&
+                   this.month == otherDate.month &&
+                   this.year == otherDate.year;
+        }
+        return false;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Tạo các đối tượng ngày
+        SimpleDate d = new SimpleDate(1,2 , 2000);
+        System.out.println(d.equals("heh"));
+        System.out.println(d.equals(new SimpleDate(5,2, 2012)));
+        System.out.println(d.equals(new SimpleDate(1, 2, 2000)));
+    }
+}
