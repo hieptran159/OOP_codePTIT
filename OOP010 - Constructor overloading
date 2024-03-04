@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+class Product {
+    private String name;
+    private String location;
+    private int weight;
+    
+    // public Dog(String name, String breed, int age) {
+    // this.name = name;
+    //   this.breed = breed;
+    //   this.age = age;
+    // }
+  
+    public Product(String name) {
+      this.name = name;
+      this.weight = 1;
+      this.location = "shelf";
+    }
+    public Product(String name, String location) {
+        this.name = name;
+        this.location = location;
+        this.weight = 1;
+    }
+    public Product(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
+        this.location = "shelf";
+    }
+    public void ToString(){
+        System.out.println(this.name + " (" + this.weight + "kg) can be found from the " + this.location );
+          
+    }
+  
+}
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Product p = new Product("Tape measure");
+        Product q = new Product("Plaster","home improvement section");
+        Product z = new Product("Tyre", 5);
+        p.ToString();
+        q.ToString();
+        z.ToString();
+    }
+}
