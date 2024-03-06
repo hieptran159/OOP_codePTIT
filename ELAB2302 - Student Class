@@ -1,0 +1,39 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class Student {
+    private String name;
+    private int age;
+    public static int cnt = 0;
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+        cnt++;
+    }
+
+    public void display() {
+        if (age >= 18) {
+            System.out.println(name);
+        }
+    }
+}
+public class Main{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Student> students = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            String name = scanner.nextLine().trim();
+            int age = Integer.parseInt(scanner.nextLine().trim());
+            Student student = new Student(name, age);
+            student.display();
+            students.add(student);
+        }
+        System.out.println(Student.cnt);
+
+        scanner.close();
+
+    }
+    
+    
+}
