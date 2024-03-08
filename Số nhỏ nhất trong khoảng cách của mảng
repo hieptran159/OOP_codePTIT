@@ -12,6 +12,7 @@ public class Main{
             for(int i = 1; i < a.length; ++i){
                 mn = Math.min(a[i] - a[i-1], mn);
             }
+            if(a.length == 1) mn = 0;
             System.out.println(mn);
         }
         
