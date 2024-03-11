@@ -1,0 +1,52 @@
+
+ class Person {
+
+    private String name;
+    private String address;
+
+    public Person(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - " + address;
+    }
+}
+class Student extends Person {
+
+    private static int credits = 0;
+
+    public Student(String name, String address) {
+        super(name, address);
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void study() {
+        credits++;
+    }
+
+}
+public class Main {
+
+     public static void main(String[] args) {
+        
+         Student student = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+         System.out.println(student);
+         System.out.println("Study credits "+ student.getCredits()); 
+         student.study(); 
+        System.out.println("Study credits "+ student.getCredits()); 
+     }
+}
