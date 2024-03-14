@@ -1,0 +1,62 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- > 0){
+            String[]  input = sc.nextLine().split(" ");
+            Stack<Integer> st = new Stack<>();
+            for(String it : input) st.push(Integer.parseInt(it));
+            // while(!st.empty()){
+            //     System.out.print(st.pop()+ " ");
+            // }
+            compressDuplicates(st);
+            System.out.println();
+        }
+        sc.close();
+    }
+    public static void compressDuplicates(Stack<Integer> s) {
+        if (s.isEmpty()) {
+            return; 
+        }
+        
+        Stack<Integer> tempStack = new Stack<>(); 
+        
+        int count = 1;
+        int current = s.pop(); 
+        
+        while (!s.isEmpty()) {
+            int next = s.pop(); 
+            
+            if (next == current) {
+                count++; 
+            } else {
+                tempStack.push(count); 
+                tempStack.push(current); 
+                current = next; 
+                count = 1; 
+            }
+        }
+        tempStack.push(count);
+        tempStack.push(current);
+        while (!tempStack.isEmpty()) {
+            s.push(tempStack.pop());
+        }
+        Stack<Integer>  result = new Stack<>();
+        while (!s.isEmpty()) {
+            result.push(s.pop());
+        }
+        while (result.size() > 2) {
+            int actual = result.pop();
+            int repeat = result.pop();
+            System.out.print(repeat + " " + actual + " ");
+        }
+        int actual = result.pop();
+        int repeat = result.pop();
+            System.out.print(repeat + " " + actual);
+        
+    }
+}
