@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+class FlightBooking{
+    public String flightId="OOP24";
+    private static int seatAvailable=180;
+    public static void Booking(){
+        seatAvailable--;
+        printed();
+    }
+    public static void Confirmed(int id){
+        System.out.print("--" + "User " + id + " Confirmed--");
+        printed();
+    }
+    public static void Cancel(){
+        seatAvailable++;
+        printed();
+    }
+    public static void printed(){
+        System.out.print("[Seat Available: " + seatAvailable + "]");
+    }
+    public static void reset(){
+        seatAvailable = 180;
+    }
+}
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while (t-- > 0) {
+            FlightBooking.reset();
+            String s = sc.nextLine();
+            String[] commands = s.split(" ");
+            for(int i = 0; i < commands.length; i+=2){
+                int id = Integer.parseInt(commands[i]);
+                String task = commands[i + 1];
+                if(task.equals("Booking"))
+                    FlightBooking.Booking();
+                else if(task.equals("Confirmed"))
+                    FlightBooking.Confirmed(id);
+                else if(task.equals("Cancel"))
+                    FlightBooking.Cancel();
+            }
+            System.out.println();
+            
+        }
+        sc.close();
+    }
+}
