@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- > 0){
+            String[] s = sc.nextLine().split(" ");
+            ArrayList<String> list = new ArrayList<>();
+            for(int i = 0; i < s.length; i++){
+                list.add(s[i]);
+            }
+            removeShorterStrings(list);
+            System.out.println();
+        }
+        sc.close();
+    }
+    public static void removeShorterStrings(ArrayList<String> list){
+        int size = list.size();
+        for (int i = 0; i < size - 1; i += 2) {
+            String a = list.get(i);
+            String b = list.get(i + 1);
+            if (a.length() <= b.length()) {
+                list.remove(a);
+                i--; 
+            } else {
+                list.remove(b); 
+                i--; 
+            }
+            size = list.size();
+        }
+        for (String str : list) {
+            System.out.print(str + " ");
+        }
+    }
+    
+}
