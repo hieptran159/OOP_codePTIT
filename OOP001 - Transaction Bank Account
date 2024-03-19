@@ -1,0 +1,64 @@
+package OOP001;
+    class BankAccount { 
+        private String id;   
+        private double balance;
+        private int transactions;
+    //TODO: Khởi tạo id (String), balance (double) và transactions (int) để đếm số lượng giao dịch
+    // TODO: Xây dựng constructor with the given id, and 0 balance and transactions    
+    public BankAccount(String id) {
+        this.id = id;
+        this.balance = 0;
+        this.transactions = 0;
+    }
+    // TODO: Sử dụng getters trả về kết quả của trường   
+    public double getBalance(){
+        return balance;
+    }
+    public String getID(){
+        return id;
+    }
+    public int getTransactions(){
+        return transactions;
+    }
+    // TODO: Cộng tiền vào the balance nếu trong khoảng từ 0-500. Được tính là 1 transaction    
+    public void deposit(double amount) {
+        if(amount >= 0 && amount <= 500){
+            balance += amount;
+            transactions++;
+        } 
+    }
+    // TODO: Trừ tiền vào balance nếu như số dư còn. Được tính là 1 transaction
+    public void withdraw(double amount) {
+        if(balance - amount >= 0){
+            balance -= amount;
+            transactions++;
+        }
+    }
+    public void transactionFee(double amount){
+        this.balance -= this.transactions/2*(amount + this.transactions*amount) ;
+        if(this.balance >= 0) System.out.println("true");
+        else {
+            this.balance = 0.0;
+            System.err.println("false");
+        }
+
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        BankAccount savings = new BankAccount("Jimmy");
+
+        savings.deposit(10.00);
+
+        savings.deposit(50.00);
+
+        savings.deposit(10.00);
+
+        savings.deposit(70.00);
+
+        savings.transactionFee(5.00);
+
+        savings.transactionFee(10.00);
+    }
+}
