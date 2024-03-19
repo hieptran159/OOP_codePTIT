@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t -- > 0){
+            Rectangle rt = new Rectangle(sc.nextInt(),sc.nextInt(),sc.nextInt(),sc.nextInt());
+            System.out.println(rt);
+        }
+        sc.close();
+    }
+    
+}
+class Rectangle{
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    public Rectangle(int x, int y, int width, int height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+    public int getHeight(){
+        return this.height;
+    }
+    public int getWidth(){
+        return this.width;
+    }
+    public int getX(){
+        return this.x;
+    }
+    public int getY(){
+        return this.y;
+    }
+    @Override
+    public String toString(){
+        return String.format("Rectangle[x=%d,y=%d,width=%d,height=%d]",getX(), getY(), getWidth(), getHeight());
+    }
+}
