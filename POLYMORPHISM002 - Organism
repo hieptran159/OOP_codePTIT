@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+interface Moveable {
+    void move(int dx, int dy);
+}
+
+class Organism implements Moveable {
+    private int x;
+    private int y;
+
+    public Organism(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "x:" + x + ";y:" + y;
+    }
+
+    @Override
+    public void move(int dx, int dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+}
+
+class Herd {
+    private ArrayList<Organism> organisms;
+
+    public Herd() {
+        organisms = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (Organism organism : organisms) {
+            result.append(organism.toString());
+        }
+        return result.toString().trim();
+    }
+
+    public void addToHerd(Moveable moveable) {
+        if (moveable instanceof Organism) {
+            organisms.add((Organism) moveable);
+        }
+    }
+    public void move() {
+        for (Organism organism : organisms) {
+            organism.move(1, 1);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- > 0) {
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            Organism organism = new Organism(x, y);
+            Herd herd = new Herd();
+            herd.addToHerd(organism);
+            herd.move();
+            System.out.println(herd);
+            //System.out.println();
+        }
+        sc.close();
+    }
+}
