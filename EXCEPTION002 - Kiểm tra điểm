@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class NotJavaFileException extends Exception {
+    public NotJavaFileException(String message) {
+        super(message);
+    }
+}
+
+public class Main {
+    public int CheckFileExtension(String fileName) throws NotJavaFileException {
+        if (fileName == null || fileName.isEmpty()) {
+            throw new NotJavaFileException("Not java file exception.Mark is");
+        }
+        if (fileName.endsWith(".java")) 
+            return 1;
+        else 
+            return 0;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- > 0){
+            Main input = new Main();
+            String s = sc.nextLine();
+            try {
+                System.out.print(input.CheckFileExtension(s));
+            } 
+            catch (NotJavaFileException e) {
+                System.out.print(e.getMessage() + " -1");
+            }
+            System.out.println();
+        }
+        sc.close();
+    }
+}
