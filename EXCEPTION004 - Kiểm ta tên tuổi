@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+class InvalidNameException extends Exception {
+    public InvalidNameException(String message) {
+        super(message);
+    }
+}
+
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+class Person{
+    private String name;
+    private int age;
+
+    public Person(String name, int age) throws InvalidNameException, InvalidAgeException {
+        this.name = name;
+        this.age = age;
+        if (name == null || name.isEmpty() || name.length() > 40) {
+            throw new InvalidNameException("Name is not valid");
+        }
+        if (age < 0 || age > 120) {
+            throw new InvalidAgeException("Age is not valid");
+        }
+    }
+    @Override
+    public String toString(){
+        return "Name: " + name + "--Age:" + age;
+    }
+}
+public class Main {
+    
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- > 0){
+            String name = sc.nextLine();
+            int age = Integer.parseInt(sc.nextLine());
+            try {
+                Person person1 = new Person(name, age);
+                System.out.println(person1);
+            } catch (InvalidNameException | InvalidAgeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        sc.close();
+
+    }
+
+}
