@@ -1,14 +1,13 @@
-
 interface Pet {
     String getName();
     void setName(String name);
     void play();
 }
 
-class Animal {
+abstract class Animal {
     protected int numberOfLegs;
 
-    public Animal(int numberOfLegs) {
+    protected Animal(int numberOfLegs) {
         this.numberOfLegs = numberOfLegs;
     }
 
@@ -63,6 +62,7 @@ class Fish extends Animal implements Pet {
 
     @Override
     public void walk() {
+        super.walk();
         System.out.println("Fish, of course, can't walk; they swim.");
     }
 }
@@ -99,8 +99,6 @@ public class Main {
         Fish fish = new Fish();
         fish.setName("Fish");
         fish.play();
-        Animal genericAnimal = new Animal(0);
-        genericAnimal.walk(); 
         fish.walk(); 
        
         Cat fluffy = new Cat();
