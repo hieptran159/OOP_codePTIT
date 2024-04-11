@@ -1,0 +1,81 @@
+class Money {
+    private int euros;
+    private int cents;
+    
+    // Constructor
+    public Money(int euros, int cents) {
+        this.euros = euros;
+        this.cents = cents;
+    }
+    
+    // Task 1: Override toString() method
+    @Override
+    public String toString() {
+        return String.format("%d.%02de", euros, cents);
+    }
+    
+    // Task 2: plus() method
+    public Money plus(Money added) {
+        int totalEuros = this.euros + added.euros;
+        int totalCents = this.cents + added.cents;
+        if (totalCents >= 100) {
+            totalEuros += totalCents / 100;
+            totalCents %= 100;
+        }
+        return new Money(totalEuros, totalCents);
+    }
+    
+    // Task 3: lessThan() method
+    public boolean lessThan(Money compared) {
+        if (this.euros < compared.euros)
+            return true;
+        else if (this.euros == compared.euros && this.cents < compared.cents)
+            return true;
+        return false;
+    }
+    
+    // Task 4: minus() method
+    public Money minus(Money minus) {
+        int totalEuros = this.euros - minus.euros;
+        int totalCents = this.cents - minus.cents;
+        if (totalCents < 0) {
+            totalEuros -= 1;
+            totalCents += 100;
+        }
+        if (totalEuros < 0) {
+            totalEuros = 0;
+            totalCents = 0;
+        }
+        return new Money(totalEuros, totalCents);
+    }
+}
+public class Main{
+    public static void main(String[] args) {
+        // Task 5
+        // (1)
+        Money a = new Money(10, 8);
+        Money b = new Money(5, 5);
+        Money c = a.plus(b);
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        
+        // (2)
+        Money u = new Money(10, 0);
+        Money y = new Money(3, 0);
+        Money w = new Money(5, 0);
+        System.out.println(u.lessThan(y));
+        System.out.println(y.lessThan(w));
+        
+        // (3)
+        Money m = new Money(10, 0);
+        Money n = new Money(3, 50);
+        Money o = m.minus(n);
+        System.out.println(m);
+        System.out.println(n);
+        System.out.println(o);
+        
+        Money o2 = o.minus(m);
+        System.out.println(o2);
+    }
+}
