@@ -1,0 +1,61 @@
+import java.util.Scanner;
+import java.lang.Math;
+abstract class Shape {
+    protected String name;
+    public Shape(String name) {
+        this.name = name;
+    }
+    public abstract double caculateArea();
+    public String displayInfo(){
+        return String.format("Shape:%s|Area:%.2f",this.name, this.caculateArea());
+    }
+}
+class Rectangle extends Shape{
+    private double width;
+    private double length;
+    public Rectangle(String name,double width, double length){
+        super(name);
+        this.length = length;
+        this.width = width;
+    }
+    @Override
+    public double caculateArea() {
+        return this.length*this.width;
+    }
+    @Override
+    public String displayInfo(){
+        return super.displayInfo();
+    }
+}
+class Circle extends Shape{
+    private double radius;
+    public Circle(String name,double radius){
+        super(name);
+        this.radius = radius;
+    }
+    @Override
+    public double caculateArea() {
+        return Math.PI * Math.pow(this.radius ,2);
+    }
+    @Override
+    public String displayInfo(){
+        return super.displayInfo();
+    }
+}
+public class Main{
+    public static void  main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while (t-- > 0) {
+            String s = sc.next();
+            if(s.equals("Rectangle")) {
+                Rectangle r = new Rectangle(s, sc.nextDouble(), sc.nextDouble());
+                System.out.println(r.displayInfo());
+            }
+            else {
+                Circle c = new Circle(s, sc.nextDouble());
+                System.out.println(c.displayInfo());
+            }
+        }
+    }
+}
