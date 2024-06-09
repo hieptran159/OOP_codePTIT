@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- >0){
+            int n = sc.nextInt();
+            int[] a = new int[n];
+            for(int i = 0; i < n; ++i) a[i] = sc.nextInt();
+            int k = sc.nextInt();
+            HashMap<Integer, Integer> map = new HashMap<>();
+            int check = 0;
+            for(int i = 0; i < n; ++i){
+                int x = k - a[i];
+                if(map.containsKey(x)){
+                    System.out.println(map.get(x) + " " + i);
+                    check = 1;
+                    continue;
+                }
+                map.put(a[i], i);
+            }
+            if(check == 0){
+                System.out.println("Not found");
+            } 
+        }
+        sc.close();
+    }
+}
