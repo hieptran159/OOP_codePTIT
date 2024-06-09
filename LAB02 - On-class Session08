@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] $) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()){
+            try {
+                String a = sc.nextLine();
+                String b = sc.nextLine();
+                String[] s = b.split("\"");
+                System.out.println(a.equals(s[1]));
+            }
+            catch (Exception e) {
+                break;
+            }
+        }
+        sc.close();
+    }
+}
