@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- >0){
+            String s = sc.next();
+            int k = sc.nextInt();
+            System.out.println("The character at position " + k + " is " + s.charAt(k));
+        }
+        sc.close();
+    }
+}
