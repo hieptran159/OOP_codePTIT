@@ -1,0 +1,91 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+abstract class Car {
+    public static double maxSalePrice = 0.0;
+    double price;
+    int year;
+
+    Car(double price, int year) {
+        this.price = price;
+        this.year = year;
+    }
+
+    public abstract double calculateSalePrice();
+    public abstract void mostExpensive();
+    @Override
+    public String toString() {
+        DecimalFormat formatter = new DecimalFormat("#,###,###.00");
+        return String.format("Price: %s VND | Year: %d", formatter.format(price), year);
+    }
+}
+
+class SportCar extends Car {
+    SportCar(double price, int year) {
+        super(price, year);
+        
+    }
+    @Override
+    public double calculateSalePrice() {
+        if (year > 2018)
+            price *= 0.8;
+        else if (year <= 2018 && year > 2010)
+            price *= 0.5;
+        else
+            price *= 0.1;
+        if (price > maxSalePrice)
+            maxSalePrice = price;
+        return price;
+    }
+    @Override
+    public void mostExpensive() {
+         Math.max(maxSalePrice,price);
+    }
+}
+
+class ClassicCar extends Car {
+    ClassicCar(double price, int year) {
+        super(price, year);
+        
+    }
+    @Override
+    public double calculateSalePrice() {
+        price *= 1.12; 
+        price += 20000000; 
+        if (price > maxSalePrice)
+            maxSalePrice = price;
+        return price;
+    }
+    @Override
+    public void mostExpensive() {
+        Math.max(maxSalePrice,price);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        
+        while(t-- > 0){
+            String[] carData = sc.nextLine().split(" ");
+            String carType = carData[0];
+            double price = Double.parseDouble(carData[1]);
+            int year = Integer.parseInt(carData[2]);
+
+            Car car;
+            if (carType.equals("SC")) {
+                car = new SportCar(price, year);
+            } else {
+                car = new ClassicCar(price, year);
+            }
+            car.calculateSalePrice();
+            System.out.println(car);
+            
+        }
+        DecimalFormat formatter = new DecimalFormat("#,###,###.00");
+        System.out.printf("Most Expensive: %s VND\n", formatter.format(Car.maxSalePrice));
+        sc.close();
+    }
+}
